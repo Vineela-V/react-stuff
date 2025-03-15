@@ -2,21 +2,22 @@ import "./App.css";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
-const App = () => {
-  const [catfact, setCatFact] = useState("");
-     
-  const fetchCatFact = () => {
-    Axios.get("https://catfact.ninja/fact").then((res) => {
-      setCatFact(res.data.fact);
-    });
+function App() {
+  const[generatedExcuse, setGeneratedExcuse] = useState("");
+  const fetchExcuse = (excuse) => {
+    Axios.get('https://excuser-three.vercel.app/v1/excuse/family/').then((res) => {
+      setGeneratedExcuse(res.data[0].excuse);
+    }
+  );
   };
-  useEffect(() => {
-    fetchCatFact();
-  }, []);
   return (
     <div className="App">
-      <button onClick={fetchCatFact}> Generate Cat Fact </button>
-      <p>{ catfact }</p>
+      <h1> Generate An Excuse </h1>
+      <button onClick={() => fetchExcuse("party")}>Party</button>
+      <button onClick={() => fetchExcuse("office")}>Office</button>
+      <button onClick={() => fetchExcuse("family")}>Family</button>
+
+      <p> {generatedExcuse} </p>
     </div>
   );
 }
