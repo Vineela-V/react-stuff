@@ -1,14 +1,15 @@
 import "./App.css";
-import { useToggle } from "./components/useToggle";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useCount } from "./UseCount";
 
-function App () {
-  const [ isVisible, toggle] = useToggle();
-
+function App() {
+  const { count, increase, decrease, restart } = useCount(900);
   return (
     <div className="App">
-      <button onClick={toggle}>{isVisible ? "Hide" : "Show"}</button>
-      {isVisible && <h1> Hidden text </h1>}
-
+      {count}
+      <button onClick={increase}> increase </button>
+      <button onClick={decrease}> decrease </button>
+      <button onClick={restart}> restart </button>
     </div>
   );
 }
