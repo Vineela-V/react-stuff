@@ -1,15 +1,27 @@
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useCount } from "./UseCount";
+import { Home } from "./pages/Home";
+import { Contact } from "./pages/Contact";
+import { Login } from "./pages/Login";
+import { Provider } from "react-redux";
+import { store } from "./store";
+
 
 function App() {
-  const { count, increase, decrease, restart } = useCount(900);
   return (
     <div className="App">
-      {count}
-      <button onClick={increase}> increase </button>
-      <button onClick={decrease}> decrease </button>
-      <button onClick={restart}> restart </button>
+      <Provider store={store}>
+      <Router>
+        <Link to="/">Home</Link>
+        <Link to="/Contact">Contact</Link>
+        <Link to="/Login">Login</Link>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Contact />} />
+        </Routes>
+      </Router>
+      </Provider>
     </div>
   );
 }
