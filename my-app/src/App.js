@@ -3,15 +3,20 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 import { Contact } from "./pages/Contact";
-import { Navbar } from "./Navbar";
-import { useState, createContext } from "react";
+import { Navbar } from "./pages/Navbar";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
-  const [username, setUserName] = useState("Vinni");
+  const client = new QueryClient({defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: true,
+    },
+  },
+});
   return (
     <div className="App">
+      <QueryClientProvider client={client}>
     <Router>
-    <AppContext.Provider value={{username, setUserName}}>
     <Navbar />
     <Routes>
      <Route path="/" element={<Home />} />
@@ -19,8 +24,8 @@ function App() {
      <Route path="/Contact" element={<Contact />} />
      <Route path="/*" element={<h1> PAGE IS NOT FOUND </h1>} />
     </Routes>
-    </AppContext.Provider>
     </Router>
+    </QueryClientProvider>
     </div>
   );
 };
