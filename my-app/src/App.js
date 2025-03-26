@@ -1,7 +1,6 @@
 import React from 'react';
 import "./App.css";
-import { Reducer} from './components/Reducer';
-
+import { useLayoutEffect } from './components/UseLayoutEffect';
 
 const App = () => {
   return (
