@@ -1,7 +1,6 @@
 import React from 'react';
 import "./App.css";
-import { ImperativeHandle } from './components/ImperativeHandle';
-import { Button } from './components/Button';
+import {MemoTutorila} from "./components/MemoTutorial";
 
 const App = () => {
   return (
