@@ -1,6 +1,6 @@
 import React from 'react';
 import "./App.css";
-import {MemoTutorila} from "./components/MemoTutorial";
+import { Callback } from "./components/Callback";
 
 const App = () => {
   return (
